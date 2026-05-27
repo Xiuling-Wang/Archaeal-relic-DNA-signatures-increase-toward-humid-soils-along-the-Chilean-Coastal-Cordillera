@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+
+# R session/history files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Raw sequencing and large local data
+data/raw/*
+!data/raw/.gitkeep
+
+# Large processed intermediates; add selected reproducibility tables explicitly
+data/processed/*.rds
+data/processed/*.RData
+data/processed/*.biom
+data/processed/*.qza
+
+# Generated outputs
+results/figures/*
+!results/figures/.gitkeep
+results/tables/*
+!results/tables/.gitkeep
+
+# Common large scientific files
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.sam
+*.tar
+*.tar.gz
+*.zip
+
+# Manuscript binaries should live outside this code repository
+*.docx
+*.pdf
+~$*
