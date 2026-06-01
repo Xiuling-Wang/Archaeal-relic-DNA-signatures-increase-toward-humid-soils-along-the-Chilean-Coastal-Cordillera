@@ -1,49 +1,35 @@
-# Chile archaea DNA-pool analyses
+# Chile Archaea Scripts
 
-Code repository for the manuscript:
+This folder is organized as the active analysis/code index for the Chile Archaea manuscript.
 
-**DNA-pool-resolved archaeal communities along a Chilean climate and soil-depth gradient**
+## Active scripts
 
-Authors: Xiuling Wang and Dirk Wagner
+| Order | Script | Purpose |
+|---:|---|---|
+| 00 | `00_config.R` | Shared paths, colours, site/depth levels, and small helper functions. |
+| 01 | `01_Fig1_map+archaeal_reads_ratio.R` | Fig. 1 map plus archaeal reads ratio by depth and DNA pool. |
+| 02 | `02_Fig2_alpha_diversity_boxplot.R` | Fig. 2 alpha diversity boxplots. Replaces the older alpha script and avoids `introdataviz`. |
+| 03 | `03_Fig3_taxonomic_composition_bubbleplots.R` | Fig. 3 / supplementary top taxa bubble plots from phylum to genus. Replaces repeated rank-specific blocks. |
+| 04 | `04_Fig4_dbRDA+environment_partitioning.R` | Fig. 4 dbRDA ordinations and environmental partitioning. |
+| 05 | `05_Fig5_specialist+generalist_bubbleplots.R` | Fig. 5 specialist/generalist indicator ASV bubble plots. |
+| 06 | `06_Fig6_WGCNA_network+module_heatmaps.R` | Fig. 6 WGCNA networks, module tables, and module-trait heatmaps. |
+| 07 | `07_FigS1_iDNA+eDNA_Venn.R` | Supplementary iDNA/eDNA Venn diagrams. |
+| 08 | `08_FigS2_top_class_barplot.R` | Supplementary top-class composition barplots. |
+| 09 | `09_FigS5_top50_ASV_bubbleplot.R` | Supplementary top 50 ASV bubble plot. |
+| 10 | `10_FigS2-S3_top_class+order_heatmap.R` | Supplementary top class/order heatmaps. |
+| 11 | `11_NMDS+PERMANOVA.R` | NMDS ordination and PERMANOVA checks. |
+| 12 | `12_LEfSe_input_prepare.R` | LEfSe input table preparation. |
+| 13 | `13_submission_statistics.R` | Submission/statistical summary tables and text outputs. |
 
-This repository is intended to support the archaeal community analyses reported in the manuscript. The study separates intracellular DNA (iDNA; cell-associated, putatively active fraction) and extracellular DNA (eDNA; extracellular or relic fraction) across four sites along the Chilean Coastal Cordillera climate gradient.
+## Legacy folders
 
-## Data availability
+| Folder | Contents |
+|---|---|
+| `99_legacy_superseded/` | Older scripts replaced by cleaner active scripts, kept only for traceability. |
+| `99_legacy_non_archaea/` | Scripts that point to the bacteria project or older non-archaea workflows. |
 
-Demultiplexed 16S rRNA gene sequences are deposited in the European Nucleotide Archive:
+## Notes
 
-- ENA project: [PRJEB73502](https://www.ebi.ac.uk/ena/browser/view/PRJEB73502)
-
-The processed archaeal ASV table, sample metadata, supplementary tables, and analysis/visualization code for the archaeal analyses will be added here before manuscript submission. The current `R/` folder contains the cleaned active analysis scripts, with local absolute paths replaced by repository-relative configuration in `R/00_config.R`.
-
-## Repository structure
-
-```text
-R/                 R scripts for statistical analyses and figure generation
-scripts/           Helper scripts for data checks or format conversion
-metadata/          Sample metadata and variable descriptions
-data/raw/          Local raw/intermediate data, not tracked by Git
-data/processed/    Lightweight processed tables intended for reproducibility
-results/figures/   Generated figure outputs, not tracked unless selected
-results/tables/    Generated result tables
-docs/              Notes on workflow, variables, and reproducibility
-```
-
-## Active script workflow
-
-1. Configure paths and shared plotting helpers with `R/00_config.R`.
-2. Generate Fig. 1 map and archaeal-read ratio summaries with `R/01_Fig1_map+archaeal_reads_ratio.R`.
-3. Generate alpha diversity figures with `R/02_Fig2_alpha_diversity_boxplot.R`.
-4. Generate taxonomic composition figures and supplementary plots with `R/03_*`, `R/08_*`, `R/09_*`, and `R/10_*`.
-5. Run dbRDA, NMDS, PERMANOVA, and environmental partitioning with `R/04_*` and `R/11_*`.
-6. Identify generalist and specialist ASVs with `R/05_Fig5_specialist+generalist_bubbleplots.R`.
-7. Build WGCNA co-occurrence modules and module-trait heatmaps with `R/06_Fig6_WGCNA_network+module_heatmaps.R`.
-8. Generate supplementary Venn, LEfSe input, submission statistics, and rarefaction outputs with `R/07_*`, `R/12_*`, `R/13_*`, and `R/14_*`.
-
-## Reproducibility notes
-
-- Large raw sequencing outputs and local intermediate files should remain outside Git.
-- Processed tables required to reproduce manuscript figures should be placed in `data/processed/` or `metadata/`.
-- Scripts should use relative paths from the repository root whenever possible.
-- To run scripts outside the repository root, set `CHILE_ARCHAEA_ROOT=/path/to/chile-archaea-dna-pools`.
-- Record package versions in `docs/session-info.md` before submission.
+- Active scripts were checked with `parse(file = ...)`.
+- `02_Fig2_alpha_diversity_boxplot.R` and `03_Fig3_taxonomic_composition_bubbleplots.R` were run successfully after cleanup.
+- Some advanced scripts still require specialist packages (`WGCNA`, `CorLevelPlot`, `ggraph`, `tidygraph`, `VennDiagram`) when their analyses are rerun.
